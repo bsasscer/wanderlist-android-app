@@ -107,8 +107,17 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+
     private NewPhotos getNewPhotos(String jsonData) throws JSONException {
         JSONArray unsplash = new JSONArray(jsonData);
+
+        for (int i = 0; i < unsplash.length(); i++) {
+            JSONObject jsonObj = (JSONObject) unsplash.get(i);
+            JSONObject user = jsonObj.getJSONObject("user");
+            Log.i(TAG, "FROM JSON, with LOVE... " + user);
+        }
+
+
         return new NewPhotos();
     }
 
