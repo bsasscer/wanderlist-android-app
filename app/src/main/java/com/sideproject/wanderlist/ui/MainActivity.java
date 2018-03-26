@@ -1,4 +1,4 @@
-package com.sideproject.wanderlist;
+package com.sideproject.wanderlist.ui;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sideproject.wanderlist.R;
+import com.sideproject.wanderlist.unsplash.NewPhotos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         String apiKey = "YOUR_API_KEY";
         String unsplashUrl = "https://api.unsplash.com/photos/?client_id=" + apiKey;
-        String placeholderUrl = "http://via.placeholder.com/200x200";
 
         if (isNetworkAvailable()) {
 
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
                             mNewPhotos = getNewPhotos(jsonData);
+//                            updateDisplay();
                         } else {
                             alertUserAboutError();
                         }
@@ -107,14 +110,22 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+//    private void updateDisplay() {
+//
+//    }
+
 
     private NewPhotos getNewPhotos(String jsonData) throws JSONException {
         JSONArray unsplash = new JSONArray(jsonData);
 
+
         for (int i = 0; i < unsplash.length(); i++) {
             JSONObject jsonObj = (JSONObject) unsplash.get(i);
-            JSONObject user = jsonObj.getJSONObject("user");
-            Log.i(TAG, "FROM JSON, with LOVE... " + user);
+            String id = jsonObj.getString("id");
+            String photoUrls = jsonObj.getString("urls");
+            int likes = jsonObj.getInt("likes");
+//            JSONObject user = jsonObj.getJSONObject("user");
+            Log.i(TAG, "FROM JSON, with LOVE... " + id + "THESE ARE THE PHOTO URLS: " + photoUrls + "HERE ARE THE LIKES: " + likes);
         }
 
 

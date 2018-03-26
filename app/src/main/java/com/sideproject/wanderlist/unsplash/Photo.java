@@ -1,11 +1,12 @@
-package com.sideproject.wanderlist;
+package com.sideproject.wanderlist.unsplash;
 
-public class NewPhotos {
+public class Photo {
     private String mPhotoId;
     private String mPhotoUrl;
-    private int mLikes;
-    private String mUserName;
+    private String mUser;
     private String mUserProfileImage;
+    private int mLikes;
+
 
     public String getPhotoId() {
         return mPhotoId;
@@ -32,11 +33,11 @@ public class NewPhotos {
     }
 
     public String getUserName() {
-        return mUserName;
+        return mUser;
     }
 
-    public void setUserName(String userName) {
-        mUserName = userName;
+    public void setUser(String user) {
+        mUser = user;
     }
 
     public String getUserProfileImage() {
@@ -46,4 +47,5 @@ public class NewPhotos {
     public void setUserProfileImage(String userProfileImage) {
         mUserProfileImage = userProfileImage;
     }
+
 }
